@@ -1,0 +1,1063 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resources & Blog | Expert Guides - First Choice</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --secondary: #004E89;
+            --accent: #F7931E;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --text: #2C3E50;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        
+
+        /* Hero Header */
+       .page-hero {
+    /* 1. Use a linear gradient for the semi-transparent black overlay (rgba(0,0,0, 0.6)) */
+    /* AND the background image. The gradient comes first to layer on top. */
+    background-image: 
+        linear-gradient(
+            rgba(0, 0, 0, 0.6), /* Start of overlay (adjust 0.6 for darkness: 0.1 is light, 0.9 is very dark) */
+            rgba(0, 0, 0, 0.6)  /* End of overlay */
+        ),
+        url('Fab1.jpg'); /* 2. Image URL goes after the gradient */
+    
+    /* 3. Standard background properties */
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat;
+    
+    /* 4. Ensure it has a good size */
+    min-height: 600px; /* Adjust this value as needed */
+}
+        /* Filter & Search Section */
+        .filter-section {
+            background: white;
+            padding: 3rem 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 65px;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .filter-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background: var(--light);
+            padding: 0.8rem 1.5rem;
+            border-radius: 60px;
+            border: 2px solid #e0e0e0;
+            min-width: 300px;
+            transition: all 0.3s ease;
+        }
+
+        .search-box:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .search-box input {
+            border: none;
+            background: transparent;
+            flex: 1;
+            font-size: 1rem;
+            outline: none;
+        }
+
+        .search-box input::placeholder {
+            color: #999;
+        }
+
+        .search-icon {
+            color: var(--primary);
+            font-size: 1.2rem;
+        }
+
+        /* Blog Grid */
+        .blog-section {
+            padding: 6rem 2rem;
+            background: var(--light);
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .blog-image {
+            width: 100%;
+            height: 250px;
+            background: linear-gradient(135deg, #FFD0A0, #FFA07A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .blog-card:hover .blog-image {
+            transform: scale(1.05);
+        }
+
+        .blog-category-badge {
+            position: absolute;
+            top: 1.5rem;
+            left: 1.5rem;
+            padding: 0.5rem 1.2rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .blog-content {
+            padding: 2.5rem;
+        }
+
+        .blog-meta {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.2rem;
+            font-size: 0.9rem;
+            color: #888;
+        }
+
+        .blog-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .blog-card h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .blog-excerpt {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        .read-more {
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: gap 0.3s ease;
+        }
+
+        .read-more:hover {
+            gap: 1rem;
+        }
+
+        /* Featured Article */
+        .featured-article {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+            margin-bottom: 4rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0;
+        }
+
+        .featured-image {
+            height: 100%;
+            min-height: 400px;
+            background: linear-gradient(135deg, var(--secondary), #667eea);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+
+        .featured-content {
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .featured-badge {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            align-self: flex-start;
+        }
+
+        .featured-content h2 {
+            font-size: 2.5rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .featured-excerpt {
+            font-size: 1.15rem;
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(255, 107, 53, 0.5);
+        }
+
+        /* Sidebar */
+        .resources-layout {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 4rem;
+        }
+
+        .sidebar {
+            position: sticky;
+            top: 180px;
+            height: fit-content;
+        }
+
+        .sidebar-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-card h3 {
+            font-size: 1.5rem;
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+        }
+
+        .popular-post {
+            padding: 1.2rem 0;
+            border-bottom: 1px solid #eee;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .popular-post:last-child {
+            border-bottom: none;
+        }
+
+        .popular-post:hover {
+            padding-left: 0.5rem;
+        }
+
+        .popular-post h4 {
+            font-size: 1.05rem;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        .popular-post .post-meta {
+            font-size: 0.85rem;
+            color: #888;
+        }
+
+        .category-tag {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--light);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 0.3rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .category-tag:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Newsletter Signup */
+        .newsletter-card {
+            background: linear-gradient(135deg, var(--secondary), #667eea);
+            color: white;
+            padding: 3rem;
+            border-radius: 25px;
+            text-align: center;
+        }
+
+        .newsletter-card h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-card p {
+            opacity: 0.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .newsletter-form input {
+            padding: 1rem 1.5rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 60px;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background: white;
+            color: var(--secondary);
+            border: none;
+            border-radius: 60px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-form button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 255, 255, 0.3);
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 5rem 2rem;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results h3 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .no-results p {
+            font-size: 1.1rem;
+            color: #666;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Footer */
+        
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .resources-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .sidebar {
+                position: static;
+            }
+
+            .featured-article {
+                grid-template-columns: 1fr;
+            }
+
+            .featured-image {
+                min-height: 300px;
+            }
+
+            .featured-content {
+                padding: 2.5rem;
+            }
+
+            .blog-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box {
+                min-width: 100%;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(26, 26, 46, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-hero {
+                padding: 10rem 1.5rem 5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+      <nav id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="logo1.png" alt="First Choice & aluminium Fabrication Logo" class="logo-image">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="support.html">AI Support</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+        <div class="mobile-menu" id="mobileMenu">☰</div>
+    </div>
+</nav>
+
+    <header class="page-hero">
+        <div class="hero-content">
+            <h1>Expert Guides & Resources</h1>
+            <p>Everything you need to know about tents, aluminium fabrication, and project planning in Uganda.</p>
+        </div>
+    </header>
+
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">All Articles</button>
+                    <button class="filter-btn" data-category="tent-care">Tent Care</button>
+                    <button class="filter-btn" data-category="aluminium">Aluminium Tips</button>
+                    <button class="filter-btn" data-category="case-study">Case Studies</button>
+                    <button class="filter-btn" data-category="guides">Project Guides</button>
+                </div>
+                <div class="search-box">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" id="searchInput" placeholder="Search articles...">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="blog-section">
+        <div class="container">
+            <div class="resources-layout">
+                <div class="main-content">
+                    <!-- Featured Article -->
+                    <div class="featured-article">
+                        <div class="featured-image">🎪</div>
+                        <div class="featured-content">
+                            <span class="featured-badge">Featured Guide</span>
+                            <h2>The Complete Guide to Choosing the Perfect Event Tent in Uganda</h2>
+                            <p class="featured-excerpt">From capacity planning to weather considerations, learn everything you need to know about selecting the ideal tent for your wedding, corporate event, or celebration.</p>
+                            <a href="#" class="btn btn-primary">Read Full Guide →</a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Grid -->
+                    <div class="blog-grid" id="blogGrid">
+                        
+                        <div class="blog-card" data-category="tent-care">
+                            <div class="blog-image" style="background: linear-gradient(135deg, #FFB347, #FF7F50);">
+                                🎪
+                                <span class="blog-category-badge">Tent Care</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>📅 Jan 15, 2025</span>
+                                    <span>⏱️ 5 min read</span>
+                                </div>
+                                <h3>How to Extend the Life of Your Event Marquee</h3>
+                                <p class="blog-excerpt">Simple cleaning and storage tips that will ensure your tent investment lasts for years, protecting against Uganda's sun and rain damage.</p>
+                                <a href="#" class="read-more">Read Article →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card" data-category="aluminium">
+                            <div class="blog-image" style="background: linear-gradient(135deg, #4A90E2, #357ABD);">
+                                🏗️
+                                <span class="blog-category-badge">Aluminium</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>📅 Jan 12, 2025</span>
+                                    <span>⏱️ 7 min read</span>
+                                </div>
+                                <h3>Sliding vs. Hinged Doors: Which is Right for Your Office?</h3>
+                                <p class="blog-excerpt">A comprehensive breakdown of aesthetic, space-saving, and security benefits of different aluminium door systems for commercial properties.</p>
+                                <a href="#" class="read-more">Read Article →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card" data-category="case-study">
+                            <div class="blog-image" style="background: linear-gradient(135deg, #E67E22, #D35400);">
+                                📊
+                                <span class="blog-category-badge">Case Study</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>📅 Jan 10, 2025</span>
+                                    <span>⏱️ 6 min read</span>
+                                </div>
+                                <h3>Project Spotlight: Mukono Petrol Station Canopy</h3>
+                                <p class="blog-excerpt">A behind-the-scenes look at the custom design and structural challenges involved in building a durable, wide-span aluminium-framed canopy.</p>
+                                <a href="#" class="read-more">Read Article →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card" data-category="guides">
+                            <div class="blog-image" style="background: linear-gradient(135deg, #9B59B6, #8E44AD);">
+                                📋
+                                <span class="blog-category-badge">Planning</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>📅 Jan 8, 2025</span>
+                                    <span>⏱️ 8 min read</span>
+                                </div>
+                                <h3>5 Key Questions Before Ordering a Custom Truck Tarpaulin</h3>
+                                <p class="blog-excerpt">Learn about material grades, tie-down systems, and measurement accuracy to ensure you get the perfect truck cover for your logistics needs.</p>
+                                <a href="#" class="read-more">Read Article →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card" data-category="tent-care">
+                            <div class="blog-image" style="background: linear-gradient(135deg, #FFB347, #FF7F50);">
+                                🎨
+                                <span class="blog-category-badge">Tent Guide</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>📅 Jan 5, 2025</span>
+                                    <span>⏱️ 6 min read</span>
+                                </div>
+                                <h3>PVC vs. Canvas: Choosing the Right Tent Fabric</h3>
+                                <p class="blog-excerpt">A detailed comparison of materials based on durability, weather resistance, longevity, and cost-effectiveness for various applications.</p>
+                                <a href="#" class="read-more">Read Article →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card" data-category="aluminium">
+                            <div class="blog-image" style="background: linear-gradient(135deg, #4A90E2, #357ABD);">
+                                🔒
+                                <span class="blog-category-badge">Security</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>📅 Jan 3, 2025</span>
+                                    <span>⏱️ 5 min read</span>
+                                </div>
+                                <h3>Best Practices for Aluminium Window Security</h3>
+                                <p class="blog-excerpt">Expert tips on frame reinforcement, locking mechanisms, and glass specifications to maximize the security of your new aluminium windows.</p>
+                                <a href="#" class="read-more">Read Article →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card" data-category="case-study">
+                            <div class="blog-image" style="background: linear-gradient(135deg, #E67E22, #D35400);">
+                                💒
+                                <span class="blog-category-badge">Success Story</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>📅 Dec 28, 2024</span>
+                                    <span>⏱️ 4 min read</span>
+                                </div>
+                                <h3>From Vision to Reality: A 500-Guest Wedding in Kampala</h3>
+                                <p class="blog-excerpt">How we transformed an outdoor venue into an elegant wedding space with custom tenting, lighting, and climate control systems.</p>
+                                <a href="#" class="read-more">Read Article →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card" data-category="guides">
+                            <div class="blog-image" style="background: linear-gradient(135deg, #9B59B6, #8E44AD);">
+                                💰
+                                <span class="blog-category-badge">Budgeting</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>📅 Dec 25, 2024</span>
+                                    <span>⏱️ 7 min read</span>
+                                </div>
+                                <h3>Understanding Tent Rental vs. Purchase: Cost Analysis</h3>
+                                <p class="blog-excerpt">A comprehensive breakdown to help you decide whether renting or buying makes financial sense for your event or business needs.</p>
+                                <a href="#" class="read-more">Read Article →</a>
+                            </div>
+                        </div>
+
+                        <div class="blog-card" data-category="aluminium">
+                            <div class="blog-image" style="background: linear-gradient(135deg, #4A90E2, #357ABD);">
+                                ✨
+                                <span class="blog-category-badge">Trends</span>
+                            </div>
+                            <div class="blog-content">
+                                <div class="blog-meta">
+                                    <span>📅 Dec 20, 2024</span>
+                                    <span>⏱️ 6 min read</span>
+                                </div>
+                                <h3>2025 Aluminium Design Trends for Ugandan Businesses</h3>
+                                <p class="blog-excerpt">Stay ahead with the latest in commercial aluminium design: from frameless glass to powder-coated finishes and smart integration.</p>
+                                <a href="#" class="read-more">Read Article →</a>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="no-results" id="noResults">
+                        <h3>No Articles Found</h3>
+                        <p>Try adjusting your filters or search terms to find what you're looking for.</p>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <aside class="sidebar">
+                    <div class="sidebar-card newsletter-card">
+                        <h3>Get Expert Tips</h3>
+                        <p>Subscribe to our newsletter for exclusive guides, project ideas, and special offers.</p>
+                        <form class="newsletter-form" id="newsletterForm">
+                            <input type="email" placeholder="Enter your email" required>
+                            <button type="submit">Subscribe</button>
+                        </form>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3>Popular Articles</h3>
+                        <div class="popular-post">
+                            <h4>Complete Event Tent Guide</h4>
+                            <p class="post-meta">📅 Jan 15 • 🔥 Most Read</p>
+                        </div>
+                        <div class="popular-post">
+                            <h4>Aluminium Door Installation Tips</h4>
+                            <p class="post-meta">📅 Jan 12 • ⭐ Trending</p>
+                        </div>
+                        <div class="popular-post">
+                            <h4>Wedding Tent Case Study</h4>
+                            <p class="post-meta">📅 Dec 28 • 💒 Featured</p>
+                        </div>
+                        <div class="popular-post">
+                            <h4>Tent Maintenance Checklist</h4>
+                            <p class="post-meta">📅 Jan 15 • 🛠️ Essential</p>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3>Browse by Topic</h3>
+                        <div>
+                            <span class="category-tag" data-category="tent-care">Tent Care</span>
+                            <span class="category-tag" data-category="aluminium">Aluminium</span>
+                            <span class="category-tag" data-category="case-study">Case Studies</span>
+                            <span class="category-tag" data-category="guides">Planning Guides</span>
+                            <span class="category-tag" data-category="all">Installation</span>
+                            <span class="category-tag" data-category="all">Maintenance</span>
+                            <span class="category-tag" data-category="all">Pricing</span>
+                            <span class="category-tag" data-category="all">Design Ideas</span>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card">
+                        <h3>Need Help?</h3>
+                        <p style="color: #666; margin-bottom: 1.5rem;">Can't find what you're looking for? Our team is here to help!</p>
+                        <a href="support.html" class="btn btn-primary" style="width: 100%; text-align: center;">Chat with AI Assistant</a>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col footer-about">
+                    <h3>First Choice</h3>
+                    <p>Uganda's trusted manufacturer of high-quality tents and aluminium products for events, construction, and custom solutions.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="portfolio.html">Tents & Shelters</a></li>
+                        <li><a href="fabricationsblog.html">Aluminium Fabrication</a></li>
+                        <li><a href="contact">Custom Solutions</a></li>
+                        <li><a href="support.html">Installation Services</a></li>
+                        <li><a href="support.html">Maintenance & Repair</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p>+256 706 028 299</p>
+                                <p>+256 787 028 099</p>
+                                <p>+256 755 550 827</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p>firstchoicetents2025@gmail.com</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p><strong>Mukono Branch:</strong> Opposite BE Energy Petrol Station, next to Jobia Hotel</p>
+                                <p><strong>Arua Branch:</strong> Baluku Cell, next to Arua Primary School, Sudan Road</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 First Choice Tents & Aluminium Fabrication. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/256706028299" class="whatsapp-float" target="_blank">💬</a>
+
+    <script>
+        // Mobile menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const blogCards = document.querySelectorAll('.blog-card');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+        const blogGrid = document.getElementById('blogGrid');
+
+        let currentCategory = 'all';
+        let currentSearch = '';
+
+        function filterBlogs() {
+            let visibleCount = 0;
+
+            blogCards.forEach((card, index) => {
+                const category = card.getAttribute('data-category');
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const excerpt = card.querySelector('.blog-excerpt').textContent.toLowerCase();
+                
+                const matchesCategory = currentCategory === 'all' || category === currentCategory;
+                const matchesSearch = currentSearch === '' || 
+                                     title.includes(currentSearch) || 
+                                     excerpt.includes(currentSearch);
+                
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'block';
+                    setTimeout(() => {
+                        card.style.opacity = '1';
+                        card.style.transform = 'translateY(0)';
+                    }, index * 50);
+                    visibleCount++;
+                } else {
+                    card.style.opacity = '0';
+                    card.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        card.style.display = 'none';
+                    }, 300);
+                }
+            });
+
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+                blogGrid.style.display = 'none';
+            } else {
+                noResults.classList.remove('show');
+                blogGrid.style.display = 'grid';
+            }
+        }
+
+        // Filter buttons
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentCategory = button.getAttribute('data-category');
+                filterBlogs();
+            });
+        });
+
+        // Search functionality
+        searchInput.addEventListener('input', (e) => {
+            currentSearch = e.target.value.toLowerCase();
+            filterBlogs();
+        });
+
+        // Sidebar category tags
+        const categoryTags = document.querySelectorAll('.category-tag');
+        categoryTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                const category = tag.getAttribute('data-category');
+                if (category && category !== 'all') {
+                    currentCategory = category;
+                    
+                    // Update filter buttons
+                    filterButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        if (btn.getAttribute('data-category') === category) {
+                            btn.classList.add('active');
+                        }
+                    });
+                    
+                    // Scroll to top of blog section
+                    document.querySelector('.blog-section').scrollIntoView({ 
+                        behavior: 'smooth', 
+                        block: 'start' 
+                    });
+                    
+                    filterBlogs();
+                }
+            });
+        });
+
+        // Newsletter form
+        const newsletterForm = document.getElementById('newsletterForm');
+        newsletterForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = e.target.querySelector('input[type="email"]').value;
+            alert(`Thank you for subscribing! We'll send expert tips and updates to ${email}`);
+            e.target.reset();
+        });
+
+        // Initialize blog cards with animation
+        blogCards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.5s ease';
+        });
+
+        // Animate on page load
+        window.addEventListener('load', () => {
+            filterBlogs();
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.sidebar-card, .featured-article').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Popular posts click handling
+        const popularPosts = document.querySelectorAll('.popular-post');
+        popularPosts.forEach(post => {
+            post.addEventListener('click', () => {
+                alert('This would navigate to the full article. Link functionality can be added here.');
+            });
+        });
+
+        // Smooth scroll for internal links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

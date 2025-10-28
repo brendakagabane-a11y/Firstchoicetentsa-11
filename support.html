@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Support Chat | First Choice Tents & Aluminium</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --secondary: #004E89;
+            --accent: #F7931E;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --text: #2C3E50;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+            background: var(--light);
+        }
+
+        /* Navigation */
+        
+
+        /* Chat Container */
+        .chat-container {
+            max-width: 1000px;
+            margin: 6rem auto 2rem;
+            padding: 2rem;
+            min-height: calc(100vh - 8rem);
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Chat Header */
+        .chat-header {
+            background: linear-gradient(135deg, var(--secondary), #667eea);
+            padding: 2.5rem;
+            border-radius: 25px 25px 0 0;
+            color: white;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .chat-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 800;
+        }
+
+        .chat-header p {
+            font-size: 1.1rem;
+            opacity: 0.95;
+        }
+
+        .ai-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 50px;
+            margin-top: 1rem;
+            font-weight: 600;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background: #4CAF50;
+            border-radius: 50%;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        /* Chat Messages Area */
+        .chat-messages {
+            background: white;
+            flex: 1;
+            padding: 2.5rem;
+            overflow-y: auto;
+            max-height: 600px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: var(--light);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 10px;
+        }
+
+        .message {
+            margin-bottom: 1.5rem;
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .message-bot {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .message-user {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            flex-direction: row-reverse;
+        }
+
+        .message-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .bot-avatar {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .user-avatar {
+            background: linear-gradient(135deg, var(--secondary), #667eea);
+            box-shadow: 0 5px 15px rgba(0, 78, 137, 0.3);
+        }
+
+        .message-content {
+            max-width: 70%;
+            padding: 1.2rem 1.5rem;
+            border-radius: 20px;
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+
+        .bot-message {
+            background: var(--light);
+            border: 1px solid #e0e0e0;
+            border-radius: 20px 20px 20px 5px;
+        }
+
+        .user-message {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 20px 20px 5px 20px;
+        }
+
+        .message-time {
+            font-size: 0.8rem;
+            opacity: 0.6;
+            margin-top: 0.5rem;
+        }
+
+        /* Quick Reply Buttons */
+        .quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+
+        .quick-reply-btn {
+            padding: 0.7rem 1.5rem;
+            background: white;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quick-reply-btn:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Typing Indicator */
+        .typing-indicator {
+            display: none;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .typing-indicator.active {
+            display: flex;
+        }
+
+        .typing-dots {
+            display: flex;
+            gap: 0.4rem;
+            padding: 1rem 1.5rem;
+            background: var(--light);
+            border-radius: 20px;
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background: #999;
+            border-radius: 50%;
+            animation: typing 1.4s infinite;
+        }
+
+        .typing-dot:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-dot:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes typing {
+            0%, 60%, 100% {
+                transform: translateY(0);
+                opacity: 0.4;
+            }
+            30% {
+                transform: translateY(-10px);
+                opacity: 1;
+            }
+        }
+
+        /* Chat Input */
+        .chat-input-container {
+            background: white;
+            padding: 2rem 2.5rem;
+            border-radius: 0 0 25px 25px;
+            box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .chat-input-wrapper {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            background: var(--light);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: 2px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+
+        .chat-input-wrapper:focus-within {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+        }
+
+        .chat-input {
+            flex: 1;
+            border: none;
+            background: transparent;
+            font-size: 1.05rem;
+            outline: none;
+            color: var(--text);
+        }
+
+        .chat-input::placeholder {
+            color: #999;
+        }
+
+        .send-button {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border: none;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.3rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .send-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        .send-button:active {
+            transform: scale(0.95);
+        }
+
+        /* Suggested Topics */
+        .suggested-topics {
+            margin-top: 1.5rem;
+        }
+
+        .suggested-topics h3 {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .topic-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+        }
+
+        .topic-btn {
+            padding: 0.6rem 1.2rem;
+            background: white;
+            border: 1px solid #ddd;
+            color: var(--text);
+            border-radius: 20px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .topic-btn:hover {
+            background: var(--light);
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        /* Footer Info */
+        .chat-footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .chat-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .chat-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .chat-container {
+                padding: 1rem;
+                margin: 5rem auto 1rem;
+            }
+
+            .chat-header h1 {
+                font-size: 2rem;
+            }
+
+            .message-content {
+                max-width: 85%;
+            }
+
+            .chat-messages {
+                padding: 1.5rem;
+                max-height: 500px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(26, 26, 46, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+       <nav id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="logo1.png" alt="First Choice & aluminium Fabrication Logo" class="logo-image">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="support.html">AI Support</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+        <div class="mobile-menu" id="mobileMenu">☰</div>
+    </div>
+</nav>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>🤖 AI Support Assistant</h1>
+            <p>Get instant answers about our tents, aluminium works, pricing, and more</p>
+            <div class="ai-status">
+                <span class="status-dot"></span>
+                <span>AI Assistant Online</span>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="message message-bot">
+                <div class="message-avatar bot-avatar">🤖</div>
+                <div>
+                    <div class="message-content bot-message">
+                        <p>Hello! I'm the First Choice AI Assistant. I'm here to help you with:</p>
+                        <ul style="margin-top: 0.8rem; padding-left: 1.2rem;">
+                            <li>Product information & pricing</li>
+                            <li>Service details & timelines</li>
+                            <li>Custom quote estimates</li>
+                            <li>Installation & warranties</li>
+                            <li>Location & contact info</li>
+                        </ul>
+                        <p style="margin-top: 1rem;">What can I help you with today?</p>
+                    </div>
+                    <div class="quick-replies">
+                        <button class="quick-reply-btn" data-message="Tell me about your tent products">🎪 Tent Products</button>
+                        <button class="quick-reply-btn" data-message="Tell me about aluminium fabrication">🏗️ Aluminium Works</button>
+                        <button class="quick-reply-btn" data-message="How much does a wedding tent cost?">💰 Pricing Info</button>
+                        <button class="quick-reply-btn" data-message="Where are you located?">📍 Locations</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="message-avatar bot-avatar">🤖</div>
+            <div class="typing-dots">
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+                <span class="typing-dot"></span>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <div class="suggested-topics">
+                <h3>Popular Topics</h3>
+                <div class="topic-buttons">
+                    <button class="topic-btn" data-message="What types of tents do you offer?">Tent Types</button>
+                    <button class="topic-btn" data-message="Do you install nationwide?">Installation</button>
+                    <button class="topic-btn" data-message="What are your warranties?">Warranties</button>
+                    <button class="topic-btn" data-message="How long does delivery take?">Delivery Time</button>
+                </div>
+            </div>
+            
+            <div class="chat-input-wrapper">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Type your question here..." autocomplete="off">
+                <button class="send-button" id="sendButton">➤</button>
+            </div>
+        </div>
+
+        <div class="chat-footer">
+            Need human assistance? <a href="contact.html">Contact our team</a> or call <a href="tel:+256706028299">+256 706 028 299</a>
+        </div>
+    </div>
+
+    <a href="https://wa.me/256706028299" class="whatsapp-float" target="_blank">💬</a>
+
+    <script>
+        // Mobile menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Chat functionality
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendButton = document.getElementById('sendButton');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Knowledge base for AI responses
+        const knowledgeBase = {
+            'tent': {
+                keywords: ['tent', 'tents', 'marquee', 'canopy', 'shelter', 'shade'],
+                response: "We offer a wide range of premium tents including:\n\n🎪 **Event & Party Marquees** - Perfect for weddings, corporate events (from UGX 35,000/sq.m)\n🚗 **Car Parking Tents** - Durable vehicle shade structures (from UGX 4,000,000/unit)\n🚛 **Truck Covers** - Heavy-duty waterproof tarpaulins (from UGX 18,000/sq.m)\n🍺 **Bar Shades** - Custom branded outdoor canopies (from UGX 25,000/sq.m)\n\nAll tents are weather-resistant and built for Uganda's climate. Would you like a specific quote?"
+            },
+            'aluminium': {
+                keywords: ['aluminium', 'aluminum', 'doors', 'windows', 'glass', 'shop front', 'partition'],
+                response: "Our aluminium fabrication services include:\n\n🚪 **Aluminium Doors** - Sliding, hinged, and custom designs (from UGX 120,000/sq.m)\n🪟 **Windows** - Energy-efficient, secure installations (from UGX 95,000/sq.m)\n🏢 **Glass Partitions** - Modern office dividers (from UGX 150,000/sq.m)\n🏪 **Shop Fronts** - Professional commercial facades (from UGX 180,000/sq.m)\n\nAll work includes professional installation and warranties. Ready to discuss your project?"
+            },
+            'price': {
+                keywords: ['price', 'cost', 'how much', 'pricing', 'quote', 'estimate', 'expensive', 'cheap', 'affordable'],
+                response: "Our pricing is competitive and depends on specifications:\n\n💰 **Tents**: Starting from UGX 18,000/sq.m\n💰 **Aluminium**: Starting from UGX 95,000/sq.m\n💰 **Custom Projects**: Starting from UGX 500,000\n\nFor an accurate quote, I recommend:\n1. Visit our instant quote calculator on the <a href='contact.html'>Contact page</a>\n2. WhatsApp us at +256 706 028 299\n3. Call our Mukono office\n\nWhat type of project are you planning?"
+            },
+            'location': {
+                keywords: ['location', 'where', 'address', 'find you', 'visit', 'office', 'branch'],
+                response: "We have TWO strategic locations:\n\n📍 **Mukono Branch (HQ)**\nOpposite BE Energy Petrol Station, next to Jobia Hotel\n📞 +256 706 028 299\n🕐 Mon-Sat: 8AM - 6PM\n\n📍 **Arua Branch**\nBaluku Cell, next to Arua Primary School, Sudan Road\n📞 +256 787 028 099\n🕐 Mon-Sat: 8AM - 6PM\n\nWe serve all of Uganda! Which location is convenient for you?"
+            },
+            'installation': {
+                keywords: ['install', 'installation', 'setup', 'fitting', 'deliver', 'delivery', 'nationwide'],
+                response: "✅ **Professional Installation Included!**\n\nOur expert teams provide:\n• Nationwide coverage across Uganda\n• Safe, precise installation\n• Site preparation guidance\n• Quality testing & inspection\n• Post-installation support\n\n⏱️ **Typical Timelines:**\n• Simple tents: 1-3 days\n• Aluminium projects: 1-3 weeks\n• Custom structures: 2-4 weeks\n\nWe handle everything from start to finish. Ready to schedule?"
+            },
+            'warranty': {
+                keywords: ['warranty', 'guarantee', 'durability', 'last', 'quality', 'maintenance'],
+                response: "🛡️ **Comprehensive Warranties:**\n\n✓ Tents: 1-5 year warranty\n✓ Aluminium: 5-10 year warranty\n✓ Installation workmanship guaranteed\n✓ Maintenance services available\n\n**Quality Promise:**\n• Premium materials only\n• Weather-resistant designs\n• Professional craftsmanship\n• Post-sales support\n\nWe stand behind every product. Any specific concerns?"
+            },
+            'custom': {
+                keywords: ['custom', 'tailor', 'design', 'bespoke', 'specific', 'unique'],
+                response: "🎨 **Custom Design is Our Specialty!**\n\nWe create:\n• Unique tent designs\n• Custom aluminium structures\n• Branded solutions\n• Specific size requirements\n• Special color schemes\n\n**Our Process:**\n1. Free consultation\n2. Design proposal (24-48hrs)\n3. Quote & revisions\n4. Manufacturing\n5. Professional installation\n\nWhat's your vision? Let's make it real!"
+            },
+            'wedding': {
+                keywords: ['wedding', 'marriage', 'ceremony', 'reception', 'bride', 'groom'],
+                response: "💒 **Perfect Wedding Tents!**\n\nOur wedding packages include:\n• Elegant marquee designs\n• 50-500+ guest capacity\n• Weather protection\n• Optional: lighting, flooring, decor support\n• Setup & breakdown included\n\n💰 **Investment:** From UGX 2M - 15M\n(depending on size and specifications)\n\n🎊 500+ successful weddings completed!\n\nWhen's your big day? Let's plan something beautiful!"
+            },
+            'contact': {
+                keywords: ['contact', 'call', 'phone', 'email', 'whatsapp', 'reach'],
+                response: "📞 **Get In Touch:**\n\n**Mukono:** +256 706 028 299\n**Arua:** +256 787 028 099\n**General:** +256 755 550 827\n\n📧 **Email:** firstchoicetents2025@gmail.com\n\n💬 **WhatsApp:** Click the green button (bottom right)\n\n🌐 **Or use our:** <a href='contact.html'>Contact Form</a>\n\nWe respond within 1 hour during business hours!"
+            }
+        };
+
+        function getCurrentTime() {
+            const now = new Date();
+            return now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+        }
+
+        function addMessage(text, isUser = false) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${isUser ? 'message-user' : 'message-bot'}`;
+            
+            const avatarDiv = document.createElement('div');
+            avatarDiv.className = `message-avatar ${isUser ? 'user-avatar' : 'bot-avatar'}`;
+            avatarDiv.textContent = isUser ? '👤' : '🤖';
+            
+            const contentWrapper = document.createElement('div');
+            const contentDiv = document.createElement('div');
+            contentDiv.className = `message-content ${isUser ? 'user-message' : 'bot-message'}`;
+            contentDiv.innerHTML = text.replace(/\n/g, '<br>');
+            
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-time';
+            timeDiv.textContent = getCurrentTime();
+            
+            contentWrapper.appendChild(contentDiv);
+            contentWrapper.appendChild(timeDiv);
+            
+            if (isUser) {
+                messageDiv.appendChild(contentWrapper);
+                messageDiv.appendChild(avatarDiv);
+            } else {
+                messageDiv.appendChild(avatarDiv);
+                messageDiv.appendChild(contentWrapper);
+            }
+            
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function findBestResponse(userMessage) {
+            const lowerMessage = userMessage.toLowerCase();
+            
+            // Check each knowledge base entry
+            for (const [key, data] of Object.entries(knowledgeBase)) {
+                if (data.keywords.some(keyword => lowerMessage.includes(keyword))) {
+                    return data.response;
+                }
+            }
+            
+            // Default response
+            return "I'd be happy to help! Here are some things I can assist with:\n\n• Tent products & pricing\n• Aluminium fabrication services\n• Installation & delivery\n• Warranties & quality\n• Locations & contact info\n\nCould you tell me more about what you need? Or <a href='contact.html'>contact our team</a> directly for personalized assistance!";
+        }
+
+        function handleSendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+            
+            // Add user message
+            addMessage(message, true);
+            chatInput.value = '';
+            
+            // Show typing indicator
+            typingIndicator.classList.add('active');
+            
+            // Simulate AI thinking
+            setTimeout(() => {
+                typingIndicator.classList.remove('active');
+                const response = findBestResponse(message);
+                addMessage(response, false);
+            }, 1500 + Math.random() * 1000);
+        }
+
+        // Send button click
+        sendButton.addEventListener('click', handleSendMessage);
+
+        // Enter key press
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSendMessage();
+            }
+        });
+
+        // Quick reply buttons
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('quick-reply-btn') || e.target.classList.contains('topic-btn')) {
+                const message = e.target.getAttribute('data-message');
+                chatInput.value = message;
+                handleSendMessage();
+            }
+        });
+
+        // Auto-scroll on new messages
+        const observer = new MutationObserver(() => {
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        });
+
+        observer.observe(chatMessages, { childList: true });
+    </script>
+</body>
+</html>

@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sliding vs Hinged Aluminium Doors: Complete Comparison Guide | First Choice</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --secondary: #004E89;
+            --accent: #F7931E;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --text: #2C3E50;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+        }
+
+        /* Reuse same styles from first article template */
+        
+
+        .article-header {
+            padding: 10rem 2rem 4rem;
+            background: linear-gradient(135deg, var(--secondary), #667eea);
+            color: white;
+            text-align: center;
+        }
+
+        .article-category {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+        }
+
+        .article-header h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            font-size: 1.05rem;
+        }
+
+        .article-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .featured-image {
+            width: 100%;
+            height: 500px;
+            background: linear-gradient(135deg, #4A90E2, #357ABD);
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            margin-bottom: 4rem;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-content {
+            font-size: 1.15rem;
+            line-height: 1.9;
+        }
+
+        .article-content h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin: 3rem 0 1.5rem;
+            font-weight: 800;
+        }
+
+        .article-content h3 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin: 2.5rem 0 1rem;
+            font-weight: 700;
+        }
+
+        .article-content p {
+            margin-bottom: 1.8rem;
+        }
+
+        .article-content ul, .article-content ol {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .article-content li {
+            margin-bottom: 1rem;
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2.5rem 0;
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .comparison-table th {
+            background: linear-gradient(135deg, var(--secondary), #667eea);
+            color: white;
+            padding: 1.5rem;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        .comparison-table td {
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid #eee;
+        }
+
+        .comparison-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .comparison-table tr:hover {
+            background: var(--light);
+        }
+
+        .pros-cons-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .pros-box, .cons-box {
+            padding: 2rem;
+            border-radius: 20px;
+        }
+
+        .pros-box {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(139, 195, 74, 0.1));
+            border-left: 5px solid #4CAF50;
+        }
+
+        .cons-box {
+            background: linear-gradient(135deg, rgba(244, 67, 54, 0.1), rgba(233, 30, 99, 0.1));
+            border-left: 5px solid #F44336;
+        }
+
+        .pros-box h4, .cons-box h4 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .pros-box h4 {
+            color: #4CAF50;
+        }
+
+        .cons-box h4 {
+            color: #F44336;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, rgba(255, 107, 53, 0.1), rgba(247, 147, 31, 0.1));
+            border-left: 5px solid var(--primary);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-radius: 10px;
+        }
+
+        .info-card {
+            background: var(--light);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2.5rem 0;
+        }
+
+        .tip-box {
+            background: linear-gradient(135deg, rgba(0, 78, 137, 0.1), rgba(102, 126, 234, 0.1));
+            border-left: 5px solid var(--secondary);
+            padding: 2rem;
+            margin: 2.5rem 0;
+            border-radius: 10px;
+        }
+
+        .tip-box::before {
+            content: '💡 Pro Tip:';
+            display: block;
+            font-weight: 700;
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            border-radius: 60px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.4s ease;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--secondary);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+        }
+
+        .article-cta {
+            background: linear-gradient(135deg, var(--secondary), #667eea);
+            padding: 4rem;
+            border-radius: 25px;
+            text-align: center;
+            color: white;
+            margin: 4rem 0;
+        }
+
+        .article-cta h3 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+
+        
+
+        @media (max-width: 768px) {
+            .pros-cons-grid {
+                grid-template-columns: 1fr;
+            }
+            .comparison-table {
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+   nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">First Choice & Aluminium Fabrication</a>
+            <ul class="nav-links" id="navLinks">
+               <li><a href="index.html">Home</a></li>
+<li><a href="services.html">Services</a></li>
+<li><a href="portfolio.html">Portfolio</a></li>
+<li><a href="about.html">About</a></li>
+<li><a href="contact.html">Contact</a></li>
+<li><a href="support.html">AI Support</a></li>
+<li><a href="resources.html">Resources</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">☰</div>
+        </div>
+    </nav>
+
+    <header class="article-header">
+        <span class="article-category">🏗️ Aluminium Guide</span>
+        <h1>Sliding vs. Hinged Doors: Which Aluminium Door System is Right for Your Office?</h1>
+        <div class="article-meta">
+            <span>📅 January 12, 2025</span>
+            <span>⏱️ 8 min read</span>
+        </div>
+    </header>
+
+    <div class="article-container">
+        <div class="featured-image">🚪</div>
+
+        <article class="article-content">
+            <p>Choosing between sliding and hinged aluminium doors is one of the most important decisions in commercial design. The right choice impacts aesthetics, space utilization, security, and long-term functionality. After installing over 300 door systems across Uganda's offices, shops, and homes, we've learned exactly what works in different scenarios.</p>
+
+            <p>This comprehensive guide breaks down everything you need to know to make the perfect choice for your project.</p>
+
+            <h2>Understanding the Fundamentals</h2>
+
+            <h3>Sliding Aluminium Doors</h3>
+            <p><strong>Mechanism:</strong> Doors slide horizontally along tracks, either single-slide or bi-parting (both panels slide).</p>
+            <p><strong>Best For:</strong> Modern offices, retail storefronts, high-traffic areas, space-constrained locations.</p>
+
+            <h3>Hinged Aluminium Doors</h3>
+            <p><strong>Mechanism:</strong> Traditional swing doors mounted on side hinges, opening inward or outward.</p>
+            <p><strong>Best For:</strong> Traditional offices, secure entrances, areas requiring weatherproofing, emergency exits.</p>
+
+            <h2>Detailed Comparison: Side by Side</h2>
+
+            <table class="comparison-table">
+                <tr>
+                    <th>Feature</th>
+                    <th>Sliding Doors</th>
+                    <th>Hinged Doors</th>
+                </tr>
+                <tr>
+                    <td><strong>Space Requirement</strong></td>
+                    <td>✅ Minimal - no swing clearance needed</td>
+                    <td>⚠️ Requires full swing radius clearance</td>
+                </tr>
+                <tr>
+                    <td><strong>Modern Aesthetic</strong></td>
+                    <td>✅ Contemporary, sleek appearance</td>
+                    <td>➖ Traditional, classic look</td>
+                </tr>
+                <tr>
+                    <td><strong>Security Level</strong></td>
+                    <td>⚠️ Good with quality locks</td>
+                    <td>✅ Excellent - multiple locking points</td>
+                </tr>
+                <tr>
+                    <td><strong>Weather Sealing</strong></td>
+                    <td>⚠️ Good but not perfect</td>
+                    <td>✅ Superior weather resistance</td>
+                </tr>
+                <tr>
+                    <td><strong>Maintenance</strong></td>
+                    <td>⚠️ Tracks require regular cleaning</td>
+                    <td>✅ Minimal - hinges occasionally need lubrication</td>
+                </tr>
+                <tr>
+                    <td><strong>Cost</strong></td>
+                    <td>💰 UGX 150,000-250,000/sq.m</td>
+                    <td>💰 UGX 120,000-200,000/sq.m</td>
+                </tr>
+                <tr>
+                    <td><strong>Installation Time</strong></td>
+                    <td>⏱️ 6-8 hours per opening</td>
+                    <td>⏱️ 4-6 hours per opening</td>
+                </tr>
+            </table>
+
+            <h2>When to Choose Sliding Doors</h2>
+
+            <div class="pros-cons-grid">
+                <div class="pros-box">
+                    <h4>✅ Ideal Scenarios</h4>
+                    <ul>
+                        <li>Small offices with limited floor space</li>
+                        <li>Retail stores wanting wide, inviting entrances</li>
+                        <li>Modern office buildings with contemporary design</li>
+                        <li>Conference rooms maximizing usable space</li>
+                        <li>Connecting indoor/outdoor spaces</li>
+                    </ul>
+                </div>
+
+                <div class="cons-box">
+                    <h4>❌ Avoid When</h4>
+                    <ul>
+                        <li>Maximum security is the priority</li>
+                        <li>Extreme weather exposure (heavy rain)</li>
+                        <li>Budget is extremely tight</li>
+                        <li>High-dust environments (tracks clog easily)</li>
+                        <li>Emergency exit requirements exist</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="info-card">
+                <h4>📊 Real Case Study: Kampala Tech Office</h4>
+                <p><strong>Challenge:</strong> 50-person office with limited conference room space</p>
+                <p><strong>Solution:</strong> Installed 3-panel sliding glass doors (4m wide opening)</p>
+                <p><strong>Result:</strong> Reclaimed 3 sq. meters of usable floor space, modern aesthetic, and flexible room configuration</p>
+                <p><strong>Investment:</strong> UGX 4.2M including installation</p>
+            </div>
+
+            <h2>When to Choose Hinged Doors</h2>
+
+            <div class="pros-cons-grid">
+                <div class="pros-box">
+                    <h4>✅ Ideal Scenarios</h4>
+                    <ul>
+                        <li>Main building entrances requiring security</li>
+                        <li>Executive offices needing privacy</li>
+                        <li>Areas exposed to heavy weather</li>
+                        <li>Traditional architecture maintaining character</li>
+                        <li>Meeting fire/building code requirements</li>
+                    </ul>
+                </div>
+
+                <div class="cons-box">
+                    <h4>❌ Avoid When</h4>
+                    <ul>
+                        <li>Space is extremely limited</li>
+                        <li>Modern, minimalist design is paramount</li>
+                        <li>Wide openings needed (over 1.2m)</li>
+                        <li>Frequent traffic flow (doors constantly opening)</li>
+                        <li>Accessibility for wheelchairs is priority</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="highlight-box">
+                <h4>🎯 The Hybrid Solution</h4>
+                <p>Many modern offices use <strong>both</strong> systems strategically: hinged doors for main entrances (security) and sliding doors for internal conference rooms (space efficiency). This gives you the best of both worlds!</p>
+            </div>
+
+            <h2>Cost Analysis & ROI</h2>
+
+            <h3>Initial Investment Breakdown</h3>
+            <p><strong>Sliding Door System (Standard 2.4m x 2.1m opening):</strong></p>
+            <ul>
+                <li>Door panels & frame: UGX 2,800,000</li>
+                <li>Track system: UGX 400,000</li>
+                <li>Installation & fitting: UGX 600,000</li>
+                <li><strong>Total: UGX 3,800,000</strong></li>
+            </ul>
+
+            <p><strong>Hinged Door System (Standard 2.4m x 2.1m opening):</strong></p>
+            <ul>
+                <li>Door panels & frame: UGX 2,200,000</li>
+                <li>Hinges & hardware: UGX 300,000</li>
+                <li>Installation & fitting: UGX 450,000</li>
+                <li><strong>Total: UGX 2,950,000</strong></li>
+            </ul>
+
+            <div class="tip-box">
+                While hinged doors cost 20-25% less initially, consider the space value you gain with sliding doors. In Kampala's premium office market at UGX 50,000/sq.m monthly rent, reclaiming 3 sq. meters pays for the door difference within 6 months!
+            </div>
+
+            <h2>Security Considerations</h2>
+
+            <p>For Ugandan businesses, security is paramount. Here's how each system performs:</p>
+
+            <h3>Hinged Doors</h3>
+            <ul>
+                <li>✅ Multiple locking points (top, bottom, sides)</li>
+                <li>✅ Compatible with deadbolts and security bars</li>
+                <li>✅ Difficult to force open when properly secured</li>
+                <li>✅ Can withstand significant force</li>
+            </ul>
+
+            <h3>Sliding Doors</h3>
+            <ul>
+                <li>⚠️ Single locking mechanism (though high-quality)</li>
+                <li>⚠️ Vulnerable if tracks aren't secured</li>
+                <li>✅ Can add security bars across tracks</li>
+                <li>✅ Tempered/laminated glass options available</li>
+            </ul>
+
+            <div class="info-card">
+                <h4>🔒 Security Upgrade Tip</h4>
+                <p>For sliding doors requiring high security, we recommend:</p>
+                <ul>
+                    <li>Anti-lift blocks on tracks</li>
+                    <li>Keyed locks instead of standard latches</li>
+                    <li>Laminated security glass (not just tempered)</li>
+                    <li>Additional rod locks at top/bottom</li>
+                </ul>
+                <p><strong>Cost:</strong> +UGX 300,000-500,000 but provides bank-level security</p>
+            </div>
+
+            <h2>Maintenance Requirements</h2>
+
+            <h3>Sliding Doors</h3>
+            <p><strong>Monthly:</strong> Clean tracks, check rollers</p>
+            <p><strong>Quarterly:</strong> Lubricate tracks, adjust alignment</p>
+            <p><strong>Annual Cost:</strong> UGX 150,000-250,000</p>
+
+            <h3>Hinged Doors</h3>
+            <p><strong>Quarterly:</strong> Lubricate hinges, check alignment</p>
+            <p><strong>Annual:</strong> Professional inspection and adjustment</p>
+            <p><strong>Annual Cost:</strong> UGX 80,000-150,000</p>
+
+            <h2>Making Your Final Decision</h2>
+
+            <p>Use this simple decision matrix:</p>
+
+            <div class="highlight-box">
+                <h4>✅ Choose SLIDING if:</h4>
+                <ol>
+                    <li>Space efficiency is critical (score 5/5)</li>
+                    <li>Modern aesthetic is priority (score 4/5)</li>
+                    <li>Security is moderate concern (score 3/5)</li>
+                    <li>Budget allows 20% premium (score 3/5)</li>
+                </ol>
+                <p><strong>Total Score: 15+/20 → Sliding is your answer</strong></p>
+            </div>
+
+            <div class="info-card">
+                <h4>✅ Choose HINGED if:</h4>
+                <ol>
+                    <li>Maximum security needed (score 5/5)</li>
+                    <li>Weather sealing critical (score 5/5)</li>
+                    <li>Traditional design preferred (score 4/5)</li>
+                    <li>Lower cost is important (score 4/5)</li>
+                </ol>
+                <p><strong>Total Score: 18+/20 → Hinged is your answer</strong></p>
+            </div>
+
+            <h2>Why Choose First Choice for Your Aluminium Doors</h2>
+
+            <p>We've installed both sliding and hinged systems across Kampala, Entebbe, Jinja, and beyond. Our expertise ensures:</p>
+
+            <ul>
+                <li>✅ Professional site assessment before recommendation</li>
+                <li>✅ Premium German and Chinese aluminium profiles</li>
+                <li>✅ 5-10 year structural warranties</li>
+                <li>✅ Expert installation teams (300+ door projects)</li>
+                <li>✅ Post-installation support and maintenance</li>
+                <li>✅ Transparent pricing with no hidden costs</li>
+            </ul>
+
+            <p>Your perfect door solution is waiting. Let's design it together.</p>
+        </article>
+
+        <div class="article-cta">
+            <h3>Ready for Your Aluminium Door Project?</h3>
+            <p>Get a free consultation and detailed quote. Our experts will assess your space and recommend the perfect solution.</p>
+            <a href="contact.html" class="btn btn-primary">Schedule Free Consultation →</a>
+        </div>
+    </div>
+
+    <footer>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col footer-about">
+                    <h3>First Choice</h3>
+                    <p>Uganda's trusted manufacturer of high-quality tents and aluminium products for events, construction, and custom solutions.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="portfolio.html">Tents & Shelters</a></li>
+                        <li><a href="fabricationsblog.html">Aluminium Fabrication</a></li>
+                        <li><a href="contact">Custom Solutions</a></li>
+                        <li><a href="support.html">Installation Services</a></li>
+                        <li><a href="support.html">Maintenance & Repair</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p>+256 706 028 299</p>
+                                <p>+256 787 028 099</p>
+                                <p>+256 755 550 827</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p>firstchoicetents2025@gmail.com</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p><strong>Mukono Branch:</strong> Opposite BE Energy Petrol Station, next to Jobia Hotel</p>
+                                <p><strong>Arua Branch:</strong> Baluku Cell, next to Arua Primary School, Sudan Road</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 First Choice Tents & Aluminium Fabrication. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

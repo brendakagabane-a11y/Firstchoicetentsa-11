@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Portfolio | Showcase of Excellence - First Choice</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --secondary: #004E89;
+            --accent: #F7931E;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --text: #2C3E50;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        
+        /* Hero Header */
+        
+.page-hero {
+    /* 1. Use a linear gradient for the semi-transparent black overlay (rgba(0,0,0, 0.6)) */
+    /* AND the background image. The gradient comes first to layer on top. */
+    background-image: 
+        linear-gradient(
+            rgba(0, 0, 0, 0.6), /* Start of overlay (adjust 0.6 for darkness: 0.1 is light, 0.9 is very dark) */
+            rgba(0, 0, 0, 0.6)  /* End of overlay */
+        ),
+        url('Pick19.jpg'); /* 2. Image URL goes after the gradient */
+    
+    /* 3. Standard background properties */
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat;
+    
+    /* 4. Ensure it has a good size */
+    min-height: 600px; /* Adjust this value as needed */
+}
+    
+        
+        .hero-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem 2.5rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stat-badge .number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            display: block;
+            line-height: 1;
+        }
+
+        .stat-badge .label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-top: 0.5rem;
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            padding: 2.5rem 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 65px;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.4rem 1.1rem;
+            border: 1px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .filter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            transform: translateX(-100%);
+            transition: transform 0.4s ease;
+            z-index: -1;
+        }
+
+        .filter-btn:hover::before,
+        .filter-btn.active::before {
+            transform: translateX(0);
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            color: white;
+            border-color: var(--primary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .project-count {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+            color: #666;
+            font-weight: 400;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-section {
+            padding: 4rem 1.5rem 7rem;
+            background: var(--light);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            height: 450px;
+            border-radius: 25px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .portfolio-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85), rgba(118, 75, 162, 0.85));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            z-index: 2;
+        }
+
+        .portfolio-item:hover::before {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .portfolio-image {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFD0A0, #FFA07A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: white;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        .portfolio-item:hover .portfolio-image {
+            transform: scale(1.1);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 2.5rem;
+            color: white;
+            z-index: 3;
+            transform: translateY(100%);
+            transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            transform: translateY(0);
+        }
+
+        .portfolio-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .portfolio-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .portfolio-overlay h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .portfolio-overlay p {
+            font-size: 1.05rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        .view-icon {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.4s ease;
+            z-index: 3;
+        }
+
+        .portfolio-item:hover .view-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Color variants for different categories */
+        .portfolio-item[data-category*="tent"] .portfolio-image {
+            background-image: 
+        url('project10.jpg');
+        }
+
+        .portfolio-item[data-category*="aluminium"] .portfolio-image {
+            background-image: 
+        url('Fab5.jpg');
+        }
+
+        .portfolio-item[data-category*="event"] .portfolio-image {
+            background-image: 
+        url('Pick28.jpg');
+        }
+
+        .portfolio-item[data-category*="industrial"] .portfolio-image {
+            background-image: 
+        url('project12.jpg');
+        }
+
+        /* Featured Banner */
+        .featured-banner {
+            background: linear-gradient(135deg, var(--dark) 0%, #2c3e50 100%);
+            padding: 6rem 2rem;
+            text-align: center;
+            color: white;
+        }
+
+        .featured-banner h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .featured-banner p {
+            font-size: 1.3rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+
+        /* Testimonial Section */
+        .portfolio-testimonials {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: var(--light);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .stars {
+            color: var(--accent);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.05rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-weight: 700;
+            color: var(--secondary);
+            font-size: 1.1rem;
+        }
+
+        .testimonial-role {
+            color: #888;
+            font-size: 0.95rem;
+            margin-top: 0.3rem;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        /* Loading Animation */
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-size: 1.2rem;
+            color: #888;
+        }
+
+        /* No Results */
+        .no-results {
+            text-align: center;
+            padding: 5rem 2rem;
+            display: none;
+        }
+
+        .no-results.show {
+            display: block;
+        }
+
+        .no-results h3 {
+            font-size: 2rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .no-results p {
+                        font-size: clamp(1rem, 1.5vw, 1.3rem);
+            color: #666;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+                gap: 2rem;
+            }
+
+            .portfolio-item {
+                height: 380px;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(26, 26, 46, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 2rem;
+                gap: 1.5rem;
+            }
+
+            .nav-links.show {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .page-hero {
+                padding: 10rem 1.5rem 5rem;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .stat-badge {
+                padding: 1rem 1.5rem;
+            }
+
+            .filter-section {
+                padding: 2rem 1rem;
+            }
+
+            .portfolio-section {
+                padding: 3rem 1rem 5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>   <nav id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="logo1.png" alt="First Choice & aluminium Fabrication Logo" class="logo-image">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="support.html">AI Support</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+        <div class="mobile-menu" id="mobileMenu">☰</div>
+    </div>
+</nav>
+
+    <header class="page-hero">
+        <div class="hero-content">
+            <h1>Our Portfolio of Excellence</h1>
+            <p>Explore 500+ successful projects across Uganda. From elegant weddings to industrial installations, see our craftsmanship in action.</p>
+            
+            <div class="hero-stats">
+                <div class="stat-badge">
+                    <span class="number">500+</span>
+                    <span class="label">Projects Completed</span>
+                </div>
+                <div class="stat-badge">
+                    <span class="number">350+</span>
+                    <span class="label">Satisfied Clients</span>
+                </div>
+                <div class="stat-badge">
+                    <span class="number">15+</span>
+                    <span class="label">Years Experience</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="tent">Tents & Canopies</button>
+                <button class="filter-btn" data-filter="aluminium">Aluminium Works</button>
+                <button class="filter-btn" data-filter="event">Event Setups</button>
+                <button class="filter-btn" data-filter="industrial">Industrial</button>
+            </div>
+            <div class="project-count" id="projectCount">Showing <strong>12</strong> projects</div>
+        </div>
+    </section>
+
+    <section class="portfolio-section">
+        <div class="container">
+            <div class="portfolio-grid" id="portfolioGrid">
+                
+                <div class="portfolio-item" data-category="tent event">
+                    <div class="portfolio-image">
+                        <span>Wedding Marquee Excellence</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Tent</span>
+                            <span class="portfolio-tag">Event</span>
+                        </div>
+                        <h3>Grand Wedding Marquee</h3>
+                        <p>500-guest capacity elegant tent with crystal chandeliers and climate control. Kampala, Central Region.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="aluminium">
+                    <div class="portfolio-image">
+                        <span>Modern Bank Frontage</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Aluminium</span>
+                        </div>
+                        <h3>Bank Branch Facade</h3>
+                        <p>Premium aluminium and glass frontage with automated sliding doors and security features. Arua City.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="tent">
+                    <div class="portfolio-image">
+                        <span>Corporate Parking Solution</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Tent</span>
+                        </div>
+                        <h3>Multi-Bay Car Park Shade</h3>
+                        <p>60-vehicle capacity permanent parking structure with UV-resistant fabric. Mukono District.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="aluminium">
+                    <div class="portfolio-image">
+                        <span>Office Glass Partitions</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Aluminium</span>
+                        </div>
+                        <h3>Modern Office Interior</h3>
+                        <p>Frameless glass partitioning system with aluminium frames creating bright, open workspace.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="tent industrial">
+                    <div class="portfolio-image">
+                        <span>Heavy Duty Transport</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Tent</span>
+                            <span class="portfolio-tag">Industrial</span>
+                        </div>
+                        <h3>Fleet Truck Tarpaulins</h3>
+                        <p>Waterproof, reinforced truck covers for 20-vehicle logistics fleet. Custom branding included.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="tent event">
+                    <div class="portfolio-image">
+                        <span>Entertainment Venue</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Tent</span>
+                            <span class="portfolio-tag">Event</span>
+                        </div>
+                        <h3>Outdoor Bar & Lounge Shade</h3>
+                        <p>Custom-branded permanent canopy with integrated lighting and weather protection for restaurant.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="aluminium">
+                    <div class="portfolio-image">
+                        <span>Retail Shop Front</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Aluminium</span>
+                        </div>
+                        <h3>Boutique Store Entrance</h3>
+                        <p>Sleek aluminium shop front with display windows and security shutters. Enhanced brand visibility.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="event tent">
+                    <div class="portfolio-image" style="background-image: 
+        url('pick26.jpg');">
+                        <span>Corporate Event</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Event</span>
+                            <span class="portfolio-tag">Tent</span>
+                        </div>
+                        <h3>Product Launch Pavilion</h3>
+                        <p>Branded event marquee for major product launch. 300-guest capacity with AV integration.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="aluminium">
+                    <div class="portfolio-image">
+                        <span>Residential Windows</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Aluminium</span>
+                        </div>
+                        <h3>Luxury Home Windows</h3>
+                        <p>Floor-to-ceiling aluminium windows with energy-efficient glass. Complete home installation.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="tent">
+                    <div class="portfolio-image">
+                        <span>Sports Complex</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Tent</span>
+                        </div>
+                        <h3>Stadium Canopy Structure</h3>
+                        <p>Large-span shade structure for sports facility spectator area. UV and rain protection.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="aluminium">
+                    <div class="portfolio-image">
+                        <span>Security Installation</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Aluminium</span>
+                        </div>
+                        <h3>Commercial Security Grilles</h3>
+                        <p>Custom-fabricated aluminium security barriers and grilles for warehouse facility.</p>
+                    </div>
+                </div>
+
+                <div class="portfolio-item" data-category="event tent">
+                    <div class="portfolio-image">
+                        <span>Festival Setup</span>
+                    </div>
+                    <div class="view-icon">👁️</div>
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-tags">
+                            <span class="portfolio-tag">Event</span>
+                            <span class="portfolio-tag">Tent</span>
+                        </div>
+                        <h3>Music Festival Structures</h3>
+                        <p>Multiple tent installations for 3-day outdoor music festival. VIP and general admission areas.</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="no-results" id="noResults">
+                <h3>No Projects Found</h3>
+                <p>Try selecting a different category to view more projects.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="portfolio-testimonials">
+        <div class="container">
+            <h2 style="text-align: center; font-size: 2.5rem; color: var(--dark); margin-bottom: 1rem;">Client Success Stories</h2>
+            <p style="text-align: center; color: #666; font-size: 1.1rem; margin-bottom: 3rem;">Hear from those who've experienced our excellence</p>
+            
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"The wedding tent exceeded all our expectations. Beautiful, sturdy, and the team was incredibly professional throughout."</p>
+                    <div class="testimonial-author">Sarah Namukasa</div>
+                    <div class="testimonial-role">Wedding Client, Kampala</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Our new shop front has transformed our business. The quality of aluminium work is outstanding and installation was flawless."</p>
+                    <div class="testimonial-author">David Okello</div>
+                    <div class="testimonial-role">Retail Business Owner, Arua</div>
+                </div>
+
+                <div class="testimonial-card">
+                    <div class="stars">★★★★★</div>
+                    <p class="testimonial-text">"Reliable, affordable, and excellent quality. The parking shade has protected our fleet for 3 years without issues."
+                    </p>
+                    <div class="testimonial-author">Peter Mugisha</div>
+                    <div class="testimonial-role">Fleet Manager, Mukono</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="featured-banner">
+        <div class="container">
+            <h2>Ready to Start Your Project?</h2>
+            <p>Join 350+ satisfied clients who chose excellence. Get your free quote today.</p>
+            <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                <a href="contact.html" class="btn btn-primary">Request a Quote →</a>
+                <a href="services.html" class="btn btn-secondary">View All Services</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 First Choice Tents & Aluminium Fabrication. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.7;">Mukono | Arua City | Uganda</p>
+    </footer>
+
+    <a href="https://wa.me/256706028299" class="whatsapp-float" target="_blank">💬</a>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Portfolio filtering
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        const projectCount = document.getElementById('projectCount');
+        const noResults = document.getElementById('noResults');
+
+        function updateProjectCount(count) {
+            projectCount.innerHTML = `Showing <strong>${count}</strong> project${count !== 1 ? 's' : ''}`;
+        }
+
+        function filterProjects(category) {
+            let visibleCount = 0;
+
+            portfolioItems.forEach((item, index) => {
+                const categories = item.getAttribute('data-category');
+                const shouldShow = category === 'all' || categories.includes(category);
+                
+                if (shouldShow) {
+                    item.style.display = 'block';
+                    // Stagger animation
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, index * 50);
+                    visibleCount++;
+                } else {
+                    item.style.opacity = '0';
+                    item.style.transform = 'translateY(20px)';
+                    setTimeout(() => {
+                        item.style.display = 'none';
+                    }, 300);
+                }
+            });
+
+            updateProjectCount(visibleCount);
+            
+            // Show no results message if needed
+            if (visibleCount === 0) {
+                noResults.classList.add('show');
+            } else {
+                noResults.classList.remove('show');
+            }
+        }
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active state
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                // Filter projects
+                const category = button.getAttribute('data-filter');
+                filterProjects(category);
+            });
+        });
+
+        // Initialize with animation
+        portfolioItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'all 0.5s ease';
+        });
+
+        // Animate items on page load
+        window.addEventListener('load', () => {
+            filterProjects('all');
+        });
+    </script>
+</body>
+</html>

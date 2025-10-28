@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Our Story & Mission - First Choice</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --secondary: #004E89;
+            --accent: #F7931E;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --text: #2C3E50;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        
+
+        /* Hero Header */
+       .page-hero {
+    /* 1. Use a linear gradient for the semi-transparent black overlay (rgba(0,0,0, 0.6)) */
+    /* AND the background image. The gradient comes first to layer on top. */
+    background-image: 
+        linear-gradient(
+            rgba(0, 0, 0, 0.6), /* Start of overlay (adjust 0.6 for darkness: 0.1 is light, 0.9 is very dark) */
+            rgba(0, 0, 0, 0.6)  /* End of overlay */
+        ),
+        url('pick13.jpg'); /* 2. Image URL goes after the gradient */
+    
+    /* 3. Standard background properties */
+    background-size: cover; 
+    background-position: center center; 
+    background-repeat: no-repeat;
+    
+    /* 4. Ensure it has a good size */
+    min-height: 600px; /* Adjust this value as needed */
+}
+        /* Stats Section */
+        .stats-section {
+            padding: 0;
+            margin-top: -4rem;
+            position: relative;
+            z-index: 10;
+        }
+
+        .stats-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 3rem 2rem;
+            border-radius: 25px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 25px 80px rgba(0, 0, 0, 0.2);
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* Story Section */
+        .story-section {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .story-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .story-visual {
+            height: 500px;
+            border-radius: 30px;
+            background-image: 
+        url('Pick18.jpg');
+        background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .story-visual::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(247, 147, 31, 0.2) 0%, transparent 50%);
+        }
+
+        .story-content h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--secondary);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .story-content p {
+            font-size: 1.15rem;
+            color: #555;
+            line-height: 1.9;
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-text {
+            color: var(--primary);
+            font-weight: 700;
+        }
+
+        /* Values Section */
+        .values-section {
+            padding: 8rem 2rem;
+            background: var(--light);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .value-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .value-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            border-radius: 25px 25px 0 0;
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .value-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+        }
+
+        .value-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.3);
+        }
+
+        .value-card h3 {
+            font-size: 1.6rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .value-card p {
+            color: #666;
+            line-height: 1.8;
+            font-size: 1.05rem;
+        }
+
+        /* Team Section */
+        .team-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--dark) 0%, #2c3e50 100%);
+            color: white;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .team-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+
+        .team-card:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-10px);
+        }
+
+        .team-avatar {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .team-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .team-role {
+            color: var(--accent);
+            font-weight: 600;
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .team-card p {
+            opacity: 0.9;
+            line-height: 1.7;
+            font-size: 1rem;
+        }
+
+        /* Locations Section */
+        .locations-section {
+            padding: 8rem 2rem;
+            background: white;
+        }
+
+        .locations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+
+        .location-card {
+            background: var(--light);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .location-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .location-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.12);
+        }
+
+        .location-card:hover::before {
+            transform: scaleY(1);
+        }
+
+        .location-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .location-card h3 {
+            font-size: 1.8rem;
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .location-card p {
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 0.8rem;
+            font-size: 1.05rem;
+        }
+
+        .location-contact {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid #ddd;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.8rem;
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* Timeline Section */
+        .timeline-section {
+            padding: 8rem 2rem;
+            background: var(--light);
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 4rem auto 0;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(180deg, var(--primary), var(--accent));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        .timeline-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            width: 45%;
+            position: relative;
+        }
+
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            font-weight: 800;
+            box-shadow: 0 10px 30px rgba(255, 107, 53, 0.4);
+            z-index: 2;
+        }
+
+        .timeline-content h3 {
+            color: var(--secondary);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .timeline-content p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 8rem 2rem;
+            background: linear-gradient(135deg, var(--secondary), #003d6b);
+            text-align: center;
+            color: white;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3.5rem);
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+
+        .cta-section p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+        }
+
+       
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Footer */
+        
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .story-grid {
+                grid-template-columns: 
+                1fr;
+                gap: 3rem;
+            }
+
+        
+
+            .timeline::before {
+                left:30px;
+            }
+
+            .timeline-content {
+                width: 100%;
+                margin-left: auto px !important;
+            }
+
+            .timeline-year {
+                left: 30pxpx;
+            }
+        }
+    </style>
+</head>
+<body>
+      <nav id="navbar">
+    <div class="nav-container">
+        <a href="index.html" class="logo">
+            <img src="logo1.png" alt="First Choice & aluminium Fabrication Logo" class="logo-image">
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="support.html">AI Support</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+        </ul>
+        <div class="mobile-menu" id="mobileMenu">☰</div>
+    </div>
+</nav>
+    <header class="page-hero">
+        <div class="hero-content">
+            <h1>Building Excellence Since 2008</h1>
+            <p>The story of Uganda's most trusted tent and aluminium fabrication company. Quality, integrity, and innovation in every project.</p>
+        </div>
+    </header>
+
+    <section class="stats-section">
+        <div class="stats-container">
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number" data-target="15">0+</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="500">0+</div>
+                    <div class="stat-label">Projects Delivered</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="350">0+</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-target="100">0+</div>
+                    <div class="stat-label">5-Star Reviews</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="story-section">
+        <div class="container">
+            <div class="story-grid">
+                <div class="story-visual">
+                    <span>Our Dedicated Team</span>
+                </div>
+                <div class="story-content">
+                    <h2>Our Vision: Quality You Can Trust</h2>
+                    <p><span class="highlight-text">First Choice Tents & Aluminium Fabrication</span> was established with a singular mission: to provide Uganda and the East African region with access to highly durable, affordable, and expertly manufactured shelters and structures.</p>
+                    <p>Based in <span class="highlight-text">Mukono</span> with a major branch in <span class="highlight-text">Arua City</span>, we've spent over a decade building a reputation for meticulous craftsmanship and unwavering commitment to client satisfaction.</p>
+                    <p>We proudly serve organizations, companies, individuals, and international clients, ensuring every product—from a small bar shade to a large-scale aluminium structure—meets the highest international standards.</p>
+                    <p style="font-weight: 700; color: var(--secondary); font-size: 1.2rem; margin-top: 1.5rem;">We are your number one partner for tents, shelters, and aluminium works in Uganda and beyond.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="values-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">OUR VALUES</span>
+                <h2 class="section-title">Why Choose First Choice</h2>
+                <p class="section-subtitle">The principles that guide every project we undertake and every relationship we build.</p>
+            </div>
+
+            <div class="values-grid">
+                <div class="value-card">
+                    <div class="value-icon">🌍</div>
+                    <h3>Local Expertise</h3>
+                    <p>With main fabrication centers in Mukono and Arua City, we cover projects across all of Uganda and surrounding regions, guaranteeing reliable and timely service.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">🔧</div>
+                    <h3>Dual Specialization</h3>
+                    <p>Our unique combination of tent manufacturing and aluminium fabrication allows us to handle complex projects under one roof, streamlining your project management.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">📐</div>
+                    <h3>Custom Solutions</h3>
+                    <p>We don't do 'one-size-fits-all.' Our designs are tailor-made to match your exact specifications, budget, and aesthetic requirements perfectly.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">💪</div>
+                    <h3>Unmatched Durability</h3>
+                    <p>Using only high-grade materials and proven manufacturing techniques, every product is resistant to weather, wear, and time—a lasting investment.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">👷</div>
+                    <h3>Expert Team</h3>
+                    <p>Our fabricators, designers, and installers are highly experienced, ensuring precise manufacturing and professional, safe installation every time.</p>
+                </div>
+
+                <div class="value-card">
+                    <div class="value-icon">💰</div>
+                    <h3>Affordable Quality</h3>
+                    <p>We optimize our processes to offer premium quality at highly competitive prices, ensuring you get the best value for your investment.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label" style="background: rgba(255,255,255,0.2);">OUR TEAM</span>
+                <h2 class="section-title" style="color: white;">Meet the Experts</h2>
+                <p class="section-subtitle" style="color: rgba(255,255,255,0.9);">Dedicated professionals committed to delivering excellence in every project.</p>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-avatar">👨‍💼</div>
+                    <h3>Leadership Team</h3>
+                    <div class="team-role">Executive Management</div>
+                    <p>Visionary leaders with 15+ years of industry experience guiding strategic growth and client relationships.</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">🔨</div>
+                    <h3>Fabrication Experts</h3>
+                    <div class="team-role">Master Craftsmen</div>
+                    <p>Skilled technicians specializing in precision aluminium work and custom tent manufacturing.</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">🎨</div>
+                    <h3>Design Team</h3>
+                    <div class="team-role">Creative Designers</div>
+                    <p>Innovative designers who transform your vision into functional, beautiful structures.</p>
+                </div>
+
+                <div class="team-card">
+                    <div class="team-avatar">🚚</div>
+                    <h3>Installation Crew</h3>
+                    <div class="team-role">Field Specialists</div>
+                    <p>Professional installers ensuring safe, precise, and timely project completion nationwide.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="locations-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">OUR LOCATIONS</span>
+                <h2 class="section-title">Serving Uganda from Two Strategic Bases</h2>
+                <p class="section-subtitle">Visit us at either of our fully equipped facilities for consultations, quotes, and project planning.</p>
+            </div>
+
+            <div class="locations-grid">
+                <div class="location-card">
+                    <div class="location-icon">🏢</div>
+                    <h3>Mukono Branch (HQ)</h3>
+                    <p>Our main fabrication center and head office, strategically located in the heart of Central Uganda.</p>
+                    <p><strong>Address:</strong> Opposite BE Energy Petrol Station, next to Jobia Hotel, Mukono</p>
+                    <div class="location-contact">
+                        <div class="contact-item">📞 +256 787 028 099</div>
+                        <div class="contact-item">📧 firstchoicetents2025@gmail.com</div>
+                        <div class="contact-item">🕐 Mon-Sat: 8AM - 6PM</div>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="timeline-section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">OUR JOURNEY</span>
+                <h2 class="section-title">15 Years of Growth & Innovation</h2>
+                <p class="section-subtitle">From humble beginnings to becoming Uganda's premier fabrication company.</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2008</div>
+                    <div class="timeline-content">
+                        <h3>The Beginning</h3>
+                        <p>Founded in Mukono with a vision to provide quality tent solutions to Uganda. Started with a small team of 5 dedicated craftsmen.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2012</div>
+                    <div class="timeline-content">
+                        <h3>Expansion into Aluminium</h3>
+                        <p>Diversified services to include aluminium fabrication, becoming one of the first companies in Uganda to offer both specializations.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2016</div>
+                    <div class="timeline-content">
+                        <h3>Arua Branch Opening</h3>
+                        <p>Opened our second major facility in Arua City to better serve northern Uganda and expand our nationwide coverage.</p>
+                    </div>
+                    
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2020</div>
+                    <div class="timeline-content">
+                        <h3>500th Project Milestone</h3>
+                        <p>Celebrated completing our 500th major project, solidifying our position as Uganda's most trusted fabrication company.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2025</div>
+                    <div class="timeline-content">
+                        <h3>Looking Forward</h3>
+                        <p>Continuing to innovate with new technologies, sustainable practices, and expanding our services across East Africa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Experience First Choice Quality?</h2>
+            <p>Join 350+ satisfied clients who chose excellence. Get your free consultation today.</p>
+            <a href="contact.html" class="btn btn-primary">Get Started Now →</a>
+        </div>
+    </section>
+
+       <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col footer-about">
+                    <h3>First Choice</h3>
+                    <p>Uganda's trusted manufacturer of high-quality tents and aluminium products for events, construction, and custom solutions.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="portfolio.html">Tents & Shelters</a></li>
+                        <li><a href="fabricationsblog.html">Aluminium Fabrication</a></li>
+                        <li><a href="contact">Custom Solutions</a></li>
+                        <li><a href="support.html">Installation Services</a></li>
+                        <li><a href="support.html">Maintenance & Repair</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <p>+256 706 028 299</p>
+                                <p>+256 787 028 099</p>
+                                <p>+256 755 550 827</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <p>firstchoicetents2025@gmail.com</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <p><strong>Mukono Branch:</strong> Opposite BE Energy Petrol Station, next to Jobia Hotel</p>
+                                <p><strong>Arua Branch:</strong> Baluku Cell, next to Arua Primary School, Sudan Road</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 First Choice Tents & Aluminium Fabrication. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/256706028299" class="whatsapp-float" target="_blank">💬</a>
+
+    <script>
+        // Mobile menu
+        const mobileMenu = document.getElementById('mobileMenu');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileMenu.addEventListener('click', () => {
+            navLinks.classList.toggle('show');
+        });
+
+        // Animated counter function
+        function animateCounter(element) {
+            const target = parseInt(element.getAttribute('data-target'));
+            const duration = 2000;
+            const step = target / (duration / 16);
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    element.textContent = Math.floor(current) + '+';
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target + '+';
+                }
+            };
+            updateCounter();
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.2,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    
+                    // Animate stat numbers
+                    if (entry.target.classList.contains('stat-card')) {
+                        const counter = entry.target.querySelector('.stat-number');
+                        if (counter && !counter.classList.contains('animated')) {
+                            counter.classList.add('animated');
+                            animateCounter(counter);
+                        }
+                    }
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animation
+        document.querySelectorAll('.stat-card, .value-card, .team-card, .location-card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Story section animation
+        const storyObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const visual = entry.target.querySelector('.story-visual');
+                    const content = entry.target.querySelector('.story-content');
+                    
+                    if (visual) {
+                        visual.style.opacity = '1';
+                        visual.style.transform = 'translateX(0)';
+                    }
+                    if (content) {
+                        content.style.opacity = '1';
+                        content.style.transform = 'translateX(0)';
+                    }
+                }
+            });
+        }, { threshold: 0.2 });
+
+        const storySection = document.querySelector('.story-grid');
+        if (storySection) {
+            const visual = storySection.querySelector('.story-visual');
+            const content = storySection.querySelector('.story-content');
+            
+            if (visual) {
+                visual.style.opacity = '0';
+                visual.style.transform = 'translateX(-50px)';
+                visual.style.transition = 'all 0.8s ease';
+            }
+            if (content) {
+                content.style.opacity = '0';
+                content.style.transform = 'translateX(50px)';
+                content.style.transition = 'all 0.8s ease';
+            }
+            
+            storyObserver.observe(storySection);
+        }
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    navLinks.classList.remove('show');
+                }
+            });
+        });
+
+        // Timeline stagger animation
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        timelineItems.forEach((item, index) => {
+            item.style.transitionDelay = `${index * 0.2}s`;
+        });
+    </script>
+</body>
+</html>

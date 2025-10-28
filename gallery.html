@@ -1,0 +1,1010 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Photo Gallery | Our Work Showcase - First Choice</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #FF6B35;
+            --secondary: #004E89;
+            --accent: #F7931E;
+            --dark: #1A1A2E;
+            --light: #F8F9FA;
+            --text: #2C3E50;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Hero Header */
+        .page-hero {
+            padding: 12rem 2rem 6rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .page-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 30% 50%, rgba(255, 107, 53, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, rgba(247, 147, 31, 0.15) 0%, transparent 50%);
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-weight: 900;
+            color: white;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+        }
+
+        .gallery-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        /* Filter Section */
+        .filter-section {
+            background: white;
+            padding: 3rem 2rem;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            position: sticky;
+            top: 65px;
+            z-index: 100;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .filter-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .category-filters {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 2rem;
+            border: 2px solid var(--primary);
+            background: white;
+            color: var(--primary);
+            border-radius: 60px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(255, 107, 53, 0.3);
+        }
+
+        .view-toggle {
+            display: flex;
+            gap: 0.5rem;
+            background: var(--light);
+            padding: 0.5rem;
+            border-radius: 10px;
+        }
+
+        .view-btn {
+            width: 45px;
+            height: 45px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn.active {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Collections Section */
+        .collections-section {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .collections-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        .collection-card {
+            position: relative;
+            height: 350px;
+            border-radius: 25px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+            transition: all 0.4s ease;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+        }
+
+        .collection-bg {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #FFB347, #FF7F50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            transition: transform 0.5s ease;
+        }
+
+        .collection-card:hover .collection-bg {
+            transform: scale(1.1);
+        }
+
+        .collection-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2.5rem;
+            color: white;
+        }
+
+        .collection-count {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            padding: 0.6rem 1.2rem;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 0.95rem;
+        }
+
+        .collection-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .collection-desc {
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 6rem 2rem;
+            background: var(--light);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .gallery-grid.masonry {
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            cursor: pointer;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            transition: all 0.5s ease;
+            background: white;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #FFD0A0, #FFA07A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            position: relative;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover .gallery-image {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.8) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 2rem;
+            color: white;
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            opacity: 1;
+        }
+
+        .gallery-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .gallery-tag {
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        .gallery-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .gallery-description {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .zoom-icon {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .zoom-icon {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            animation: zoomIn 0.4s ease;
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .lightbox-image {
+            width: 100%;
+            height: auto;
+            max-height: 85vh;
+            border-radius: 15px;
+            background: linear-gradient(135deg, #FFD0A0, #FFA07A);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            color: white;
+        }
+
+        .lightbox-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, transparent, rgba(0, 0, 0, 0.9));
+            padding: 2rem;
+            color: white;
+            border-radius: 0 0 15px 15px;
+        }
+
+        .lightbox-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .lightbox-description {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .lightbox-prev {
+            left: 2rem;
+        }
+
+        .lightbox-next {
+            right: 2rem;
+        }
+
+        /* WhatsApp Float */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 70px;
+            height: 70px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            color: white;
+            box-shadow: 0 10px 40px rgba(37, 211, 102, 0.5);
+            z-index: 999;
+            text-decoration: none;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: rgba(255, 255, 255, 0.8);
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+                gap: 1.5rem;
+            }
+
+            .gallery-image {
+                height: 300px;
+            }
+
+            .filter-controls {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .lightbox-nav {
+                width: 50px;
+                height: 50px;
+            }
+
+            .lightbox-prev {
+                left: 1rem;
+            }
+
+            .lightbox-next {
+                right: 1rem;
+            }
+
+            .page-hero {
+                padding: 10rem 1.5rem 5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="logo">
+                <img src="logo1.png" alt="First Choice & aluminium Fabrication Logo" class="logo-image">
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="portfolio.html">Portfolio</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="support.html">AI Support</a></li>
+                <li><a href="resources.html">Resources</a></li>
+                <li class="active"><a href="gallery.html">Gallery</a></li>
+            </ul>
+            <div class="mobile-menu" id="mobileMenu">☰</div>
+        </div>
+    </nav>
+
+    <header class="page-hero">
+        <div class="hero-content">
+            <h1>Photo Gallery & Collections</h1>
+            <p>Explore our finest work through stunning photography. From elegant weddings to industrial installations, see the quality that makes us Uganda's first choice.</p>
+            
+            <div class="gallery-stats">
+                <div class="stat-item">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Projects Photographed</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50+</span>
+                    <span class="stat-label">Photo Collections</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Years Documented</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="filter-section">
+        <div class="container">
+            <div class="filter-controls">
+                <div class="category-filters">
+                    <button class="filter-btn active" data-category="all">All Photos</button>
+                    <button class="filter-btn" data-category="weddings">Weddings</button>
+                    <button class="filter-btn" data-category="corporate">Corporate Events</button>
+                    <button class="filter-btn" data-category="tents">Tent Installations</button>
+                    <button class="filter-btn" data-category="aluminium">Aluminium Works</button>
+                    <button class="filter-btn" data-category="industrial">Industrial</button>
+                </div>
+                <div class="view-toggle">
+                    <button class="view-btn active" data-view="grid" title="Grid View">⊞</button>
+                    <button class="view-btn" data-view="masonry" title="Masonry View">⊡</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="collections-section">
+        <div class="container">
+            <h2 style="font-size: 3rem; text-align: center; color: var(--dark); margin-bottom: 1rem; font-weight: 800;">Featured Collections</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: #666; margin-bottom: 3rem;">Curated galleries showcasing our best work by category</p>
+            
+            <div class="collections-grid">
+                <div class="collection-card" data-collection="weddings">
+                    <div class="collection-bg" style="background: linear-gradient(135deg, #FFB347, #FF7F50);">💒</div>
+                    <div class="collection-overlay">
+                        <span class="collection-count">45 Photos</span>
+                        <h3 class="collection-title">Wedding Elegance</h3>
+                        <p class="collection-desc">Beautiful marquees and event setups from unforgettable celebrations</p>
+                    </div>
+                </div>
+
+                <div class="collection-card" data-collection="corporate">
+                    <div class="collection-bg" style="background: linear-gradient(135deg, #4A90E2, #357ABD);">🏢</div>
+                    <div class="collection-overlay">
+                        <span class="collection-count">38 Photos</span>
+                        <h3 class="collection-title">Corporate Excellence</h3>
+                        <p class="collection-desc">Professional events, conferences, and business installations</p>
+                    </div>
+                </div>
+
+                <div class="collection-card" data-collection="aluminium">
+                    <div class="collection-bg" style="background: linear-gradient(135deg, #667eea, #764ba2);">🏗️</div>
+                    <div class="collection-overlay">
+                        <span class="collection-count">52 Photos</span>
+                        <h3 class="collection-title">Aluminium Mastery</h3>
+                        <p class="collection-desc">Modern doors, windows, and architectural fabrications</p>
+                    </div>
+                </div>
+
+                <div class="collection-card" data-collection="industrial">
+                    <div class="collection-bg" style="background: linear-gradient(135deg, #7F8C8D, #5D6D7E);">🚛</div>
+                    <div class="collection-overlay">
+                        <span class="collection-count">28 Photos</span>
+                        <h3 class="collection-title">Industrial Solutions</h3>
+                        <p class="collection-desc">Heavy-duty tarpaulins, warehouse structures, and logistics</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="gallery-section">
+        <div class="container">
+            <h2 style="font-size: 3rem; text-align: center; color: var(--dark); margin-bottom: 1rem; font-weight: 800;">All Photos</h2>
+            
+            <div class="gallery-grid" id="galleryGrid">
+                
+                <div class="gallery-item" data-category="weddings" data-index="0">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #FFB347, #FF7F50);">💒</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Wedding</span>
+                            <span class="gallery-tag">Kampala</span>
+                        </div>
+                        <h3 class="gallery-title">Grand Wedding Marquee</h3>
+                        <p class="gallery-description">500-guest elegant celebration with crystal chandeliers</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="aluminium" data-index="1">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #4A90E2, #357ABD);">🚪</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Aluminium</span>
+                            <span class="gallery-tag">Office</span>
+                        </div>
+                        <h3 class="gallery-title">Modern Sliding Doors</h3>
+                        <p class="gallery-description">Executive office entrance with frameless glass panels</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="corporate" data-index="2">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #E67E22, #D35400);">🎤</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Corporate</span>
+                            <span class="gallery-tag">Event</span>
+                        </div>
+                        <h3 class="gallery-title">Product Launch Pavilion</h3>
+                        <p class="gallery-description">300-guest branded event tent with AV integration</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="tents" data-index="3">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #9B59B6, #8E44AD);">🎪</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Tent</span>
+                            <span class="gallery-tag">Parking</span>
+                        </div>
+                        <h3 class="gallery-title">Car Park Shade Structure</h3>
+                        <p class="gallery-description">60-vehicle capacity permanent installation, Mukono</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="industrial" data-index="4">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #7F8C8D, #5D6D7E);">🚛</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Industrial</span>
+                            <span class="gallery-tag">Transport</span>
+                        </div>
+                        <h3 class="gallery-title">Fleet Truck Tarpaulins</h3>
+                        <p class="gallery-description">Heavy-duty waterproof covers for 20-vehicle logistics fleet</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="weddings" data-index="5">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #FFB347, #FF7F50);">🌸</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Wedding</span>
+                            <span class="gallery-tag">Garden</span>
+                        </div>
+                        <h3 class="gallery-title">Garden Wedding Setup</h3>
+                        <p class="gallery-description">Intimate 150-guest outdoor celebration, Entebbe</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="aluminium" data-index="6">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #4A90E2, #357ABD);">🏪</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Aluminium</span>
+                            <span class="gallery-tag">Retail</span>
+                        </div>
+                        <h3 class="gallery-title">Shop Front Installation</h3>
+                        <p class="gallery-description">Sleek retail entrance with security features, Arua</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="corporate" data-index="7">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #E67E22, #D35400);">🎯</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Corporate</span>
+                            <span class="gallery-tag">Conference</span>
+                        </div>
+                        <h3 class="gallery-title">Business Conference Hall</h3>
+                        <p class="gallery-description">Large tent setup for annual general meeting, 400+ attendees</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="tents" data-index="8">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #9B59B6, #8E44AD);">🍺</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Tent</span>
+                            <span class="gallery-tag">Commercial</span>
+                        </div>
+                        <h3 class="gallery-title">Outdoor Bar Canopy</h3>
+                        <p class="gallery-description">Custom-branded permanent shade for restaurant venue</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="aluminium" data-index="9">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #4A90E2, #357ABD);">🪟</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Aluminium</span>
+                            <span class="gallery-tag">Windows</span>
+                        </div>
+                        <h3 class="gallery-title">Office Window Installation</h3>
+                        <p class="gallery-description">Floor-to-ceiling energy-efficient windows, modern building</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="weddings" data-index="10">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #FFB347, #FF7F50);">💐</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Wedding</span>
+                            <span class="gallery-tag">Luxury</span>
+                        </div>
+                        <h3 class="gallery-title">Premium Wedding Pavilion</h3>
+                        <p class="gallery-description">High-end setup with climate control and elegant draping</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-category="industrial" data-index="11">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #7F8C8D, #5D6D7E);">🏭</div>
+                    <div class="zoom-icon">🔍</div>
+                    <div class="gallery-overlay">
+                        <div class="gallery-tags">
+                            <span class="gallery-tag">Industrial</span>
+                            <span class="gallery-tag">Warehouse</span>
+                        </div>
+                        <h3 class="gallery-title">Warehouse Cover Structure</h3>
+                        <p class="gallery-description">Large-span temporary storage facility for construction materials</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" id="lightboxClose">×</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev">‹</button>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext">›</button>
+        <div class="lightbox-content" id="lightboxContent">
+            <div class="lightbox-image" id="lightboxImage">💒</div>
+            <div class="lightbox-info" id="lightboxInfo">
+                <h3 class="lightbox-title">Project Title</h3>
+                <p class="lightbox-description">Project description goes here</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 First Choice Tents & Aluminium Fabrication. All rights reserved.</p>
+        <p style="margin-top: 0.5rem; opacity: 0.7;">Mukono | Arua City | Uganda</p>
+    </footer>
+
+    <a href="https://wa.me/256706028299" class="whatsapp-float" target="_blank">💬</a>
+
+    <script src="scripts.js"></script>
+    <script>
+        // Gallery data for lightbox
+        const galleryData = [];
+        document.querySelectorAll('.gallery-item').forEach((item, index) => {
+            const image = item.querySelector('.gallery-image');
+            const title = item.querySelector('.gallery-title').textContent;
+            const description = item.querySelector('.gallery-description').textContent;
+            const emoji = image.textContent;
+            const gradient = image.style.background;
+            
+            galleryData.push({ image: emoji, gradient, title, description, index });
+        });
+
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const category = button.getAttribute('data-category');
+                
+                galleryItems.forEach((item, index) => {
+                    const itemCategory = item.getAttribute('data-category');
+                    
+                    if (category === 'all' || itemCategory === category) {
+                        item.style.display = 'block';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'translateY(0)';
+                        }, index * 30);
+                    } else {
+                        item.style.opacity = '0';
+                        item.style.transform = 'translateY(20px)';
+                        setTimeout(() => {
+                            item.style.display = 'none';
+                        }, 300);
+                    }
+                });
+            });
+        });
+
+        // View toggle
+        const viewButtons = document.querySelectorAll('.view-btn');
+        const galleryGrid = document.getElementById('galleryGrid');
+
+        viewButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                viewButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                const view = button.getAttribute('data-view');
+                if (view === 'masonry') {
+                    galleryGrid.classList.add('masonry');
+                } else {
+                    galleryGrid.classList.remove('masonry');
+                }
+            });
+        });
+
+        // Lightbox functionality
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxInfo = document.getElementById('lightboxInfo');
+        const lightboxClose = document.getElementById('lightboxClose');
+        const lightboxPrev = document.getElementById('lightboxPrev');
+        const lightboxNext = document.getElementById('lightboxNext');
+        let currentLightboxIndex = 0;
+
+        function openLightbox(index) {
+            const data = galleryData[index];
+            currentLightboxIndex = index;
+            
+            lightboxImage.textContent = data.image;
+            lightboxImage.style.background = data.gradient;
+            lightboxInfo.querySelector('.lightbox-title').textContent = data.title;
+            lightboxInfo.querySelector('.lightbox-description').textContent = data.description;
+            
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function navigateLightbox(direction) {
+            currentLightboxIndex += direction;
+            if (currentLightboxIndex < 0) currentLightboxIndex = galleryData.length - 1;
+            if (currentLightboxIndex >= galleryData.length) currentLightboxIndex = 0;
+            openLightbox(currentLightboxIndex);
+        }
+
+        // Gallery item click
+        galleryItems.forEach(item => {
+            item.addEventListener('click', () => {
+                const index = parseInt(item.getAttribute('data-index'));
+                openLightbox(index);
+            });
+        });
+
+        // Lightbox controls
+        lightboxClose.addEventListener('click', closeLightbox);
+        lightboxPrev.addEventListener('click', () => navigateLightbox(-1));
+        lightboxNext.addEventListener('click', () => navigateLightbox(1));
+
+        // Close on background click
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') navigateLightbox(-1);
+            if (e.key === 'ArrowRight') navigateLightbox(1);
+        });
+
+        // Collection cards click
+        const collectionCards = document.querySelectorAll('.collection-card');
+        collectionCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const collection = card.getAttribute('data-collection');
+                const filterBtn = document.querySelector(`.filter-btn[data-category="${collection}"]`);
+                if (filterBtn) {
+                    filterBtn.click();
+                    document.querySelector('.gallery-section').scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Initialize gallery with animation
+        galleryItems.forEach(item => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(20px)';
+            item.style.transition = 'all 0.5s ease';
+        });
+
+        window.addEventListener('load', () => {
+            galleryItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }, index * 50);
+            });
+        });
+    </script>
+</body>
+</html>
